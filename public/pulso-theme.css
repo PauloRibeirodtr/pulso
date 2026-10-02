@@ -1,0 +1,157 @@
+:root {
+    --pulso-primary: #006b62;
+    --pulso-dark: #004b50;
+    --pulso-green: #65bf5c;
+    --pulso-ink: #203e42;
+    --pulso-muted: #5c7073;
+    --pulso-border: #dce7e4;
+    --pulso-surface: #f3f7f5;
+}
+
+body {
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    color: var(--pulso-ink);
+    font-size: .95rem;
+}
+
+a { color: var(--pulso-primary); }
+a:hover { color: var(--pulso-dark); }
+.text-muted { color: var(--pulso-muted) !important; }
+.text-primary { color: var(--pulso-primary) !important; }
+.bg-primary { background-color: var(--pulso-primary) !important; }
+
+.content-wrapper { background: var(--pulso-surface); }
+.content-header { padding: 28px 24px 20px; }
+.content-header h1 { color: var(--pulso-dark); font-size: 1.65rem; font-weight: 650; }
+.content-wrapper > .content { padding: 0 24px 24px; }
+.main-header { border-bottom: 1px solid var(--pulso-border); }
+.main-sidebar { border-right: 1px solid var(--pulso-border); box-shadow: none !important; }
+
+.pulso-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 88px;
+    padding: 20px 12px;
+    border-bottom: 1px solid var(--pulso-border) !important;
+    background: #fff;
+}
+
+.pulso-brand .pulso-logo {
+    float: none;
+    width: 48px;
+    height: auto;
+    max-height: none;
+    margin: 0;
+    opacity: 1 !important;
+    flex-shrink: 0;
+}
+
+.pulso-name { display: block; color: var(--pulso-dark); font-size: 1.25rem; letter-spacing: -.04em; }
+.pulso-slogan { display: block; color: var(--pulso-muted); font-size: .65rem; font-weight: 400; letter-spacing: 0; }
+.nav-sidebar { padding-top: 16px; }
+.nav-sidebar .nav-header { color: var(--pulso-muted); font-size: .65rem; font-weight: 700; letter-spacing: .09em; padding: 18px 16px 10px; }
+.nav-sidebar > .nav-item > .nav-link { border-radius: 6px; margin-bottom: 6px; padding: 12px; }
+.sidebar-light-primary .nav-sidebar > .nav-item > .nav-link.active {
+    background: var(--pulso-primary);
+    box-shadow: none;
+}
+.sidebar-light-primary .nav-sidebar > .nav-item > .nav-link:not(.active):hover { background: #e8f3ed; color: var(--pulso-dark); }
+
+.card { border: 1px solid var(--pulso-border); border-radius: 10px; box-shadow: 0 3px 12px rgb(0 75 80 / 4%); overflow: hidden; }
+.card-primary.card-outline { border-top: 3px solid var(--pulso-primary); }
+.card-header { border-bottom: 1px solid var(--pulso-border); padding: 18px 22px; background: #fff; }
+.card-body { padding: 24px; }
+.card-footer { background: #f8faf9; border-top: 1px solid var(--pulso-border); padding: 16px 22px; }
+.card-title { font-weight: 600; }
+.btn { border-radius: 6px; font-weight: 600; padding: .55rem 1rem; }
+.btn-sm { padding: .35rem .65rem; font-size: .8rem; }
+.btn-primary { background: var(--pulso-primary); border-color: var(--pulso-primary); }
+.btn-primary:hover, .btn-primary:focus, .btn-primary:not(:disabled):not(.disabled):active {
+    background: var(--pulso-dark);
+    border-color: var(--pulso-dark);
+}
+.btn-outline-primary { color: var(--pulso-primary); border-color: var(--pulso-primary); }
+.btn-outline-primary:hover, .btn-outline-primary:focus, .btn-outline-primary:not(:disabled):not(.disabled):active {
+    background: var(--pulso-primary);
+    border-color: var(--pulso-primary);
+    color: #fff;
+}
+.btn-default { background: #fff; border-color: var(--pulso-border); color: var(--pulso-ink); }
+.form-control { border-color: #b8cbc6; border-radius: 6px; min-height: 42px; color: var(--pulso-ink); }
+.form-control:focus { border-color: var(--pulso-primary); box-shadow: 0 0 0 3px rgb(0 107 98 / 13%); }
+.form-group > label { font-size: .85rem; }
+.input-group-text { background: #f4f8f6; color: var(--pulso-muted); border-color: #b8cbc6; }
+.custom-control-input:checked ~ .custom-control-label::before { background-color: var(--pulso-primary); border-color: var(--pulso-primary); }
+.icheck-primary > input:first-child:checked + label::before { background-color: var(--pulso-primary); border-color: var(--pulso-primary); }
+.table thead th { background: #f4f8f6; color: var(--pulso-muted); font-size: .75rem; letter-spacing: .03em; border-bottom: 1px solid var(--pulso-border); padding: 14px 20px; }
+.table td { border-top-color: #e7eeeb; padding: 16px 20px; vertical-align: middle; }
+.table-hover tbody tr:hover { background: #f4faf7; }
+.badge { padding: .4rem .65rem; border-radius: 5px; font-weight: 600; }
+.badge-success { background: #e0f2e5; color: #1c603a; }
+.badge-secondary { background: #edf0f1; color: #536365; }
+.page-link { color: var(--pulso-primary); border-color: var(--pulso-border); }
+.page-item.active .page-link { background: var(--pulso-primary); border-color: var(--pulso-primary); }
+:focus-visible { outline: 3px solid var(--pulso-primary); outline-offset: 3px; }
+
+.login-page, .register-page {
+    min-height: 100vh;
+    height: auto;
+    padding: 40px 18px;
+    background: linear-gradient(135deg, #edf5ef 0%, #f8faf9 55%, #e3f0ed 100%);
+    border-top: 5px solid var(--pulso-primary);
+}
+.login-box, .register-box { width: 420px; max-width: 100%; }
+.login-logo, .register-logo { margin-bottom: 28px; }
+.pulso-auth-logo { display: block; margin: 0 auto 16px; width: 166px; height: auto; border-radius: 12px; }
+.login-logo .pulso-name, .register-logo .pulso-name { font-size: 2rem; line-height: 1.2; }
+.login-logo .pulso-slogan, .register-logo .pulso-slogan { margin-top: 8px; font-size: .95rem; }
+.login-box .card, .register-box .card { box-shadow: 0 14px 45px rgb(0 75 80 / 8%); }
+.login-box .card-header, .register-box .card-header { padding: 22px; }
+.login-box .card-footer, .register-box .card-footer { text-align: center; font-size: .85rem; }
+.login-card-body, .register-card-body { color: var(--pulso-ink); }
+
+.pulso-welcome { display: flex; align-items: center; gap: 28px; padding: 32px; background: #fff; border: 1px solid var(--pulso-border); border-left: 5px solid var(--pulso-green); border-radius: 10px; margin-bottom: 24px; }
+.pulso-welcome img { width: 150px; height: auto; flex-shrink: 0; }
+.pulso-eyebrow { color: var(--pulso-primary); font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.pulso-welcome h2 { color: var(--pulso-dark); font-size: 1.65rem; font-weight: 650; margin: 8px 0 12px; }
+.pulso-welcome p:last-child { margin-bottom: 0; color: var(--pulso-muted); max-width: 620px; }
+
+.pulso-student-wrap { width: min(100%, 760px); margin-inline: auto; }
+.pulso-student-card .card-body { padding: 24px; }
+.pulso-scale { display: flex; gap: 10px; }
+.pulso-scale-option { position: relative; flex: 1; margin: 0; cursor: pointer; }
+.pulso-scale-option input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.pulso-scale-option span { display: flex; align-items: center; justify-content: center; min-height: 52px; border: 2px solid var(--pulso-border); border-radius: 8px; background: #fff; font-size: 1.15rem; font-weight: 700; color: var(--pulso-ink); }
+.pulso-scale-option input:checked + span { border-color: var(--pulso-primary); background: #e5f3ee; color: var(--pulso-dark); }
+.pulso-scale-option input:focus-visible + span { outline: 3px solid var(--pulso-primary); outline-offset: 3px; }
+.pulso-scale-option input:disabled + span { opacity: .75; cursor: default; }
+.pulso-scale-caption { margin-top: 8px; }
+.pulso-student-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+@media (min-width: 992px) {
+    .sidebar-mini.sidebar-collapse .pulso-brand { justify-content: center; padding-inline: 8px; }
+    .sidebar-mini.sidebar-collapse .main-sidebar:hover .pulso-brand { justify-content: flex-start; padding-inline: 12px; }
+}
+
+@media (max-width: 575.98px) {
+    .content-header { padding: 22px 10px 16px; }
+    .content-wrapper > .content { padding: 0 10px 20px; }
+    .content-header > .d-flex { flex-wrap: wrap; gap: 14px; }
+    .card-body { padding: 20px; }
+    .card-header .form-inline { display: flex; flex-wrap: wrap; gap: 10px; }
+    .card-header .form-inline .form-control { flex: 1 1 160px; width: auto; margin-right: 0 !important; }
+    .pulso-welcome { flex-direction: column; align-items: flex-start; padding: 24px; gap: 12px; }
+    .pulso-welcome img { width: 110px; }
+    .pulso-welcome h2 { font-size: 1.4rem; }
+    .pulso-student-card .card-body { padding: 20px; }
+    .pulso-scale { gap: 6px; }
+    .pulso-scale-option span { min-height: 50px; }
+    .pulso-student-actions { display: grid; }
+    .pulso-student-actions .btn { width: 100%; }
+    .login-page, .register-page { padding-block: 28px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; animation: none !important; }
+}
