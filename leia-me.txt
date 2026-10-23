@@ -1,0 +1,82 @@
+PULSO IFMS — BASE DE DEMONSTRAÇÃO
+
+PREPARAÇÃO
+
+Na pasta do projeto, execute:
+php artisan db:seed --class=DemonstracaoSeeder
+
+A carga cria um campus fictício, dois cursos, quatro turmas e 80 estudantes.
+Cada turma recebe três aplicações encerradas, com todas as respostas completas,
+e uma quarta aplicação aberta, com respostas concluídas, parciais e pendentes.
+
+A quarta aplicação de cada turma encerra em 07/11/2026, às 23:59:59,
+no horário de São Paulo. O banco armazena o horário convertido para o fuso
+da aplicação (atualmente UTC: 08/11/2026, às 02:59:59).
+
+Se a base já existir, executar novamente o comando ajusta apenas o prazo da
+quarta rodada. Não duplica registros, não reabre aplicações encerradas e
+preserva senhas, respostas e atendimentos. Após o prazo, a pesquisa não estará
+disponível para novas respostas, mesmo que o status ainda apareça como aberta.
+
+ACESSO DOS ESTUDANTES
+
+O login é a matrícula. A senha inicial é exatamente o nome amigável da turma:
+
+Turma            Matrículas                                Senha inicial
+DEMO-INFO-2025   DEMO-INFO-2025-01 até DEMO-INFO-2025-20     DEMO-INFO-2025
+DEMO-INFO-2026   DEMO-INFO-2026-01 até DEMO-INFO-2026-20     DEMO-INFO-2026
+DEMO-ADS-2025    DEMO-ADS-2025-01 até DEMO-ADS-2025-20       DEMO-ADS-2025
+DEMO-ADS-2026    DEMO-ADS-2026-01 até DEMO-ADS-2026-20       DEMO-ADS-2026
+
+Contas sugeridas para a quarta rodada, antes de interagir na demonstração:
+- DEMO-INFO-2026-01: pesquisa não iniciada; senha DEMO-INFO-2026.
+- DEMO-INFO-2026-06: pesquisa em andamento; senha DEMO-INFO-2026.
+- DEMO-INFO-2026-09: pesquisa finalizada; senha DEMO-INFO-2026.
+
+Os cinco primeiros estudantes de cada turma estão com a pesquisa não iniciada;
+os números 06 a 08 estão em andamento; os números 09 a 20 já finalizaram.
+As senhas são armazenadas somente como hash. Se forem alteradas depois,
+a senha inicial deste arquivo deixa de funcionar para aquela conta.
+
+CREDENCIAIS DOS SERVIDORES
+
+Identificador    Escopo
+demo.gestao      Institucional: visão de todos os cursos autorizados.
+demo.campus      Campus de demonstração: os dois cursos fictícios.
+demo.info        Somente Técnico em Informática.
+demo.ads         Somente Análise e Desenvolvimento de Sistemas.
+
+Na primeira execução bem-sucedida do seeder, uma senha aleatória inicial,
+compartilhada pelas quatro contas, é exibida no terminal na mensagem:
+"Servidores: demo.gestao, demo.campus, demo.info e demo.ads. Senha inicial: ..."
+
+Copie e guarde essa senha ao executar o comando. Ela não é fixa e não fica
+gravada em texto neste arquivo. As senhas do banco são hashes e não podem
+ser recuperadas em texto. Uma nova execução preserva as contas e não exibe
+novamente a senha original.
+
+Se a saída da primeira execução foi perdida, solicite a redefinição da senha
+das contas de demonstração por um administrador autorizado. Não apague o
+banco nem execute migrate:fresh para tentar recuperar as credenciais.
+
+SUGESTÃO DE DEMONSTRAÇÃO — 10 A 15 MINUTOS
+
+1. Entrar como demo.gestao e apresentar os dois cursos, quatro turmas e
+   80 estudantes. Explicar que todos os dados são fictícios.
+2. Mostrar um questionário: bloco institucional, permanente do curso e
+   temporário. Explicar que dimensões são os temas das perguntas.
+3. Em outra sessão ou janela privativa, entrar como DEMO-INFO-2026-06,
+   retomar o preenchimento, finalizar e solicitar uma conversa.
+4. Entrar como demo.info e mostrar a participação e os indicadores da turma.
+   Comparar as três aplicações encerradas e os resultados parciais da quarta.
+5. Mostrar a melhora de infraestrutura em INFO-2025, a adaptação em INFO-2026,
+   a estabilidade em ADS-2025 e a queda de organização em ADS-2026.
+   Para visualizar os dois cursos, usar demo.gestao ou demo.campus.
+6. Consultar a solicitação de conversa e marcá-la como atendida. Explicar que
+   o pedido é voluntário e que o Pulso não mantém prontuário de intervenções.
+7. Mostrar os filtros, a exportação e a diferença entre a visão da gestão
+   e a visão do coordenador de apenas um curso.
+
+O preenchimento ao vivo altera a base: a mesma participação finalizada não
+pode ser enviada novamente. Para repetir a apresentação, use outro estudante
+que ainda não respondeu, como DEMO-INFO-2026-01 a DEMO-INFO-2026-05.

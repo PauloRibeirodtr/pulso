@@ -407,6 +407,13 @@ return [
             'model' => AplicacaoPesquisa::class,
         ],
         [
+            'text' => 'Relatórios',
+            'route' => 'relatorios.index',
+            'icon' => 'fas fa-fw fa-chart-bar',
+            'can' => 'viewAny',
+            'model' => AplicacaoPesquisa::class,
+        ],
+        [
             'text' => 'Solicitações de conversa',
             'route' => 'solicitacoes.index',
             'icon' => 'fas fa-fw fa-comments',

@@ -12,6 +12,7 @@ use App\Http\Controllers\ModeloQuestionarioController;
 use App\Http\Controllers\ModeloQuestionarioPerguntaController;
 use App\Http\Controllers\PerguntaController;
 use App\Http\Controllers\RegistroAuditoriaController;
+use App\Http\Controllers\RelatorioController;
 use App\Http\Controllers\ResetEstudantePasswordController;
 use App\Http\Controllers\ServidorController;
 use App\Http\Controllers\SolicitacaoAcompanhamentoController;
@@ -125,6 +126,8 @@ Route::middleware(['auth', EnsureUserIsActive::class])->group(function () {
 
     Route::get('/indicadores', [IndicadorController::class, 'index'])
         ->name('indicadores.index');
+    Route::get('/relatorios', [RelatorioController::class, 'index'])->name('relatorios.index');
+    Route::get('/relatorios/exportar', [RelatorioController::class, 'export'])->name('relatorios.export');
     Route::get('/indicadores/aplicacoes/{aplicacao}', [IndicadorController::class, 'show'])
         ->name('indicadores.show');
     Route::get('/indicadores/aplicacoes/{aplicacao}/exportar', ExportarIndicadoresController::class)
