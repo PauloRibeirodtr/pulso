@@ -76,14 +76,21 @@
             </div></div>
             <details class="card report-disclosure report-print-expand"><summary class="card-header"><span class="font-weight-bold">Detalhamento das dimensões</span><span class="report-toggle-hint small text-muted"><span class="report-when-closed">Exibir tabela</span><span class="report-when-open">Recolher tabela</span></span></summary><div class="table-responsive"><table class="table table-sm"><thead><tr><th>Aplicação / grupo</th><th>Bloco</th><th>Dimensão</th><th>Escala</th><th>Estudantes</th><th>Respostas</th><th>Média</th></tr></thead><tbody>@forelse($dados['dimensoes'] as $linha)<tr><td>{{ $linha['grupo'] }}</td><td>{{ ucfirst($linha['origem']) }}</td><td>{{ $linha['dimensao'] }}</td><td>{{ $linha['minimo'] }} a {{ $linha['maximo'] }}</td><td>{{ $linha['estudantes'] }}</td><td>{{ $linha['respostas'] }}</td><td>{{ $linha['media'] === null ? 'Restrita' : number_format($linha['media'], 2, ',', '.') }}</td></tr>@empty<tr><td colspan="7">Sem respostas finalizadas comparáveis.</td></tr>@endforelse</tbody></table></div></details>
             <div class="card"><div class="card-header"><h3 class="card-title">Distribuição e médias por pergunta</h3></div><div class="card-body">
-                <p class="small text-muted">Cada segmento representa a proporção de respostas com aquela nota. Valores menores indicam percepção menos favorável. As escalas originais são preservadas.</p>
+                <p class="small text-muted">Cada barra representa o percentual de respostas com aquela nota, em uma escala de 0% a 100%. Valores menores indicam percepção menos favorável. As escalas originais são preservadas.</p>
                 @forelse($dados['perguntas'] as $linha)
                     <div class="report-chart border-bottom mb-3 pb-3"><h4 class="h6">{{ $linha['texto'] }}</h4><p class="small mb-1">{{ ucfirst($linha['origem']) }} · {{ $linha['grupo'] }} · {{ $linha['estudantes'] }} estudante(s) · {{ $linha['respostas'] }} resposta(s) · Média: <strong>{{ $linha['media'] === null ? 'Restrita' : number_format($linha['media'], 2, ',', '.') }}</strong> · Escala {{ $linha['minimo'] }} a {{ $linha['maximo'] }}</p>
                     @if($linha['distribuicao'] === null)<p class="small text-muted mb-0">Distribuição restrita pelo mínimo de participantes.</p>@else
-                        <div class="report-stacked" role="img" aria-label="Distribuição das notas de {{ $linha['minimo'] }} a {{ $linha['maximo'] }}">
-                            @foreach($linha['distribuicao'] as $nota => $quantidade)<span style="width:{{ $quantidade * 100 / max(1, $linha['respostas']) }}%;background:hsl({{ 20 + ($nota - $linha['minimo']) * 140 / max(1, $linha['maximo'] - $linha['minimo']) }},55%,35%)" title="Nota {{ $nota }}: {{ $quantidade }} resposta(s)"></span>@endforeach
-                        </div>
-                        <p class="small mt-1 mb-0">@for($nota = $linha['minimo']; $nota <= $linha['maximo']; $nota++)<span class="mr-3">Nota {{ $nota }}: {{ $linha['distribuicao'][$nota] ?? 0 }} ({{ number_format(($linha['distribuicao'][$nota] ?? 0) * 100 / max(1, $linha['respostas']), 1, ',', '.') }}%)</span>@endfor</p>
+                        @for($nota = $linha['minimo']; $nota <= $linha['maximo']; $nota++)
+                            @php($quantidade = $linha['distribuicao'][$nota] ?? 0)
+                            @php($percentual = $quantidade * 100 / max(1, $linha['respostas']))
+                            <div class="mb-2">
+                                <div class="small mb-1">Nota {{ $nota }}: <strong>{{ $quantidade }} resposta(s) ({{ number_format($percentual, 1, ',', '.') }}%)</strong></div>
+                                <svg viewBox="0 0 640 20" class="report-bar" role="img" aria-label="Nota {{ $nota }}: {{ $quantidade }} resposta(s), {{ number_format($percentual, 1, ',', '.') }}%">
+                                    <rect width="640" height="20" fill="#e2e8f0"/>
+                                    <rect width="{{ $percentual * 640 / 100 }}" height="20" fill="hsl({{ 20 + ($nota - $linha['minimo']) * 140 / max(1, $linha['maximo'] - $linha['minimo']) }},55%,35%)"/>
+                                </svg>
+                            </div>
+                        @endfor
                     @endif</div>
                 @empty<p class="text-muted">Sem respostas finalizadas comparáveis.</p>@endforelse
             </div></div>
